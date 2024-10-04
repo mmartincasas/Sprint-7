@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { StarshipList } from '../interfaces/starship';
+import { Starship, StarshipList } from '../interfaces/starship';
 
 
 @Injectable({
@@ -8,16 +8,27 @@ import { StarshipList } from '../interfaces/starship';
 })
 export class StarshipsService {
 
-  private StarshipsUrl: string = "https://swapi.dev/api/starships";
+  private starshipsListUrl: string = "https://swapi.dev/api/starships";
 
   httpClient = inject(HttpClient);
 
   getAll() {
-    return this.httpClient.get<StarshipList>(this.StarshipsUrl);
+    return this.httpClient.get<StarshipList>(this.starshipsListUrl);
   }
 
-  getById(id: number){
-    return this.httpClient.get<StarshipList>(this.StarshipsUrl+'/'+id);
+  getIdForUrl(url: String): string{
+    return url.replace(this.starshipsListUrl,"").replaceAll('/','');
+  }
+
+  /*
+  getByUrl(starshipUrl: string){
+    let id = this.getIdForUrl(starshipUrl);
+    return this.httpClient.get<Starship>(this.starshipsListUrl+'/'+id);
+  }*/
+
+
+  getById(id: string){
+    return this.httpClient.get<Starship>(this.starshipsListUrl+'/'+id);
   }
   
 }

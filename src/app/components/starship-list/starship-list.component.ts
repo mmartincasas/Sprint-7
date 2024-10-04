@@ -1,14 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { Starship, StarshipList } from '../../interfaces/starship';
 import { StarshipsService } from '../../services/starships.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { StarshipDetailsComponent } from "../starship-details/starship-details.component";
 
 
 @Component({
   selector: 'app-starship-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, StarshipDetailsComponent],
   templateUrl: './starship-list.component.html',
   styleUrl: './starship-list.component.scss'
 })
@@ -18,6 +19,7 @@ export class StarshipListComponent {
 
   starshipsService = inject(StarshipsService);
   route = inject(ActivatedRoute);
+  router = inject(Router);
 
   ngOnInit(){
     this.starshipsService.getAll().subscribe((data: StarshipList) => {
@@ -27,5 +29,11 @@ export class StarshipListComponent {
       console.log(this.arrStarships);
     })
   }
+
+  openStarshipDetails (url: string){
+    const id = this.starshipsService.getIdForUrl(url);   
+    this.router.navigate(['starship-details',id])
+  }
+
 
 }

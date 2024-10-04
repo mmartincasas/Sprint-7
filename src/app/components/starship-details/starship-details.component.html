@@ -1,1 +1,47 @@
-<p>starship-details works!</p>
+<div class="card m-3">
+
+    <!--
+    @if(errorMessage!=""){
+        <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+    }-->
+
+    <h2>STARSHIP</h2>
+    <hr>
+
+    @if(starship){
+        <div class="card m-2">
+            @if(starship){
+            <div class="card-body">
+                <div class="row">
+                    
+                    <div class="col-12 col-md-4 mb-3">
+                        <img src="https://starwars-visualguide.com/assets/img/starships/{{id}}.jpg" alt="{{ starship.model }}" class="img-fluid">
+                    </div>
+                    
+                    <div class="col-12 col-md-8">
+                        <!-- Nombre ocupa todo el ancho -->
+                        <h5>{{ starship.name | uppercase }}</h5>
+                       
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <p><b>Model: </b> {{ starship.model }}</p>
+                                <p><b>Cost in credits: </b> {{ starship.cost_in_credits }}</p>
+                                <p><b>Cargo Capacity: </b> {{ starship.cargo_capacity }}</p>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <p><b>Manufacturer: </b>{{ starship.manufacturer }}</p>
+                                <p><b>Length: </b>{{ starship.length }}</p>
+                                <p><b>Crew: </b>{{ starship.crew }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+    }
+
+</div>
