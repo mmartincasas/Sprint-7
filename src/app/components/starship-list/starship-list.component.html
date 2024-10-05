@@ -1,5 +1,5 @@
 
-@for(starship of arrStarships; track starship.name){
+@for(starship of arrStarships(); track starship.name){
 
     <div class="card m-3" (click)="openStarshipDetails(starship.url)">
         <div class="card-body">

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { Starship, StarshipList } from '../../interfaces/starship';
 import { StarshipsService } from '../../services/starships.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,20 +15,54 @@ import { StarshipDetailsComponent } from "../starship-details/starship-details.c
 })
 export class StarshipListComponent {
 
-  arrStarships: Starship [] = [];
+  arrStarships = signal<Starship[]>([]);
+  nextUrl = signal<string | null>(null);
+  isLoading = signal<boolean>(false);
+  hasMore = signal<boolean>(true);
+  initUrl: string = 'https://swapi.dev/api/starships';
 
   starshipsService = inject(StarshipsService);
   route = inject(ActivatedRoute);
   router = inject(Router);
 
   ngOnInit(){
-    this.starshipsService.getAll().subscribe((data: StarshipList) => {
-      this.arrStarships = data.results;
-
-      /*CONSOLE.LOG ARRAY STARSHIPS */
-      console.log(this.arrStarships);
-    })
+    this.loadMoreStarships();
   }
+
+  
+  loadMoreStarships(): void {
+    if (this.isLoading() || !this.hasMore()) {
+      return;
+    }
+
+    this.isLoading.set(true); 
+    const currentUrl = this.nextUrl() || this.initUrl; 
+
+    this.starshipsService.getAll(currentUrl).subscribe((data: StarshipList) => {
+      
+      this.arrStarships.update(starships => [...starships, ...data.results]);
+      this.isLoading.set(false); 
+
+      if (!data.next) {
+        this.hasMore.set(false);
+      }
+
+      this.nextUrl.set(data.next); 
+
+    });
+  }
+
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const threshold = document.body.scrollHeight - 100;
+
+    if (scrollPosition >= threshold) {
+      this.loadMoreStarships();
+    }
+  }
+
 
   openStarshipDetails (url: string){
     const id = this.starshipsService.getIdForUrl(url);   

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Starship, StarshipList } from '../interfaces/starship';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -12,20 +13,13 @@ export class StarshipsService {
 
   httpClient = inject(HttpClient);
 
-  getAll() {
-    return this.httpClient.get<StarshipList>(this.starshipsListUrl);
+  getAll(url: string = this.starshipsListUrl): Observable<StarshipList>{
+    return this.httpClient.get<StarshipList>(url);
   }
 
   getIdForUrl(url: String): string{
     return url.replace(this.starshipsListUrl,"").replaceAll('/','');
   }
-
-  /*
-  getByUrl(starshipUrl: string){
-    let id = this.getIdForUrl(starshipUrl);
-    return this.httpClient.get<Starship>(this.starshipsListUrl+'/'+id);
-  }*/
-
 
   getById(id: string){
     return this.httpClient.get<Starship>(this.starshipsListUrl+'/'+id);
