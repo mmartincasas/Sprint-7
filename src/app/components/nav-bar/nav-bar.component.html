@@ -1,11 +1,30 @@
-<nav class='navbar navbar-expand-lg'>
-    <div class='container'>
-        <ul class='navbar-nav'>            
-            <li class="nav-item">
-                Home
-            </li>
-            <li class='nav-item' routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Starship List
-            </li>
-        </ul>
+<div class="container">
+    <div class="row d-flex align-items-center p-3">
+        <div class="col-4">
+            <img src="assets/social-media/tiktok.svg" alt="Tiktok Logo" class="p-2"/>
+            <img src="assets/social-media/instagram.svg" alt="Instagram Logo" class="p-2"/>
+            <img src="assets/social-media/twitter-x.svg" alt="Twitter-X Logo" class="p-2"/>
+            <img src="assets/social-media/facebook.svg" alt="Facebook Logo" class="p-2"/>
+            <img src="assets/social-media/youtube.svg" alt="Youtube Logo" class="p-2">
+            | <img src="assets/social-media/sw_nav_kids.svg"alt="StarWars Kids Logo" class="p-2">
+        </div>
+        <div class="col-4 text-center">
+            <img src="assets/star-wars-logo.svg" alt="Star Wars Logo" class="img-fluid m-3" style="max-width: 150px;"/>
+        </div>
+        <div class="col-4 text-end">
+            LOG IN
+            REGISTER
+        </div>
     </div>
-</nav>
+
+    <nav class='navbar navbar-expand-lg navbar-dark bg-dark justify-content-center'>
+            <ul class='navbar-nav'>
+                <li class='nav-item px-2'>
+                    <a class='nav-link' routerLink='/'>Home</a>
+                </li>
+                <li class='nav-item px-2'>
+                    <a class='nav-link' routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Starship List</a>
+                </li>
+            </ul>
+    </nav>
+</div>

@@ -1,10 +1,12 @@
+<div class="container">
+    @for(starship of arrStarships(); track starship.name){
 
-@for(starship of arrStarships(); track starship.name){
-
-    <div class="card m-3" (click)="openStarshipDetails(starship.url)">
-        <div class="card-body">
-            <h5>{{starship.name|uppercase}}</h5>
-            <h6>{{starship.model}}</h6>
+        <div class="card m-3 text-center" (click)="openStarshipDetails(starship.url)">
+            <div class="card-body">
+                <h5>{{starship.name|uppercase}}</h5>
+                <h6>{{starship.model}}</h6>
+            </div>
         </div>
-    </div>
-}
+    }
+</div>
+<br><br>

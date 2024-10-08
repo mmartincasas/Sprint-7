@@ -1,6 +1,69 @@
 body {
-    background-color: black;
+  background-image: url('./stars.jpeg');
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  margin: 0px;
+}
+
+header {
+  background-color: black;
+  position: sticky;  
+  top: 0;                
+  width: 100%;      
+  z-index: 100;  
+  background-color: rgb(0, 0, 0); 
+  color: white;     
+  padding: 10px;    
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+}
+
+
+$primary: #FFC500; 
+$text-primary: white;
+$secondary:white;
+$card-bg: #1a1d20; 
+$card-border-color: transparent;
+
+@import 'bootstrap/scss/bootstrap';
+
+.card {
     color: white;
-    margin: 0;
-    height: 100vh;
+}
+
+// Estilo para la navbar
+.navbar {
+  background-color: black !important; // Establece el fondo de la navbar en negro
+}
+
+// Estilo para los enlaces
+.nav-link {
+  color: white; // Color del texto de los enlaces
+  position: relative; // Necesario para posicionar la línea debajo del enlace
+  &:hover {
+      color: $primary;
   }
+}
+
+// Estilo para los enlaces activos
+.nav-link.active {
+  color: $primary; // Cambia al color primario para el enlace activo
+
+  &::after {
+      content: ""; // Crea un pseudo-elemento
+      display: block; // Muestra el pseudo-elemento como bloque
+      width: 100%; // Ancho del pseudo-elemento
+      height: 2px; // Altura de la línea
+      background-color: $primary; // Color de la línea
+      position: absolute; // Posiciona el pseudo-elemento de forma absoluta
+      left: 0; // Alinea a la izquierda
+      bottom: -5px; // Distancia de la línea respecto al texto (ajusta según sea necesario)
+  }
+}
+
+
+h2{
+  color: white;
+}
