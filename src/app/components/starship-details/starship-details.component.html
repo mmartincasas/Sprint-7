@@ -5,14 +5,16 @@
 
         @if(starship){
             <div class="card m-2">
-                @if(starship){
                 <div class="card-body">
                     <div class="row">
-                        
+
                         <div class="col-12 col-md-4 mb-3">
-                            <img src="https://starwars-visualguide.com/assets/img/starships/{{id}}.jpg" alt="{{ starship.model }}" class="img-fluid">
+                                <img src="https://starwars-visualguide.com/assets/img/starships/{{id}}.jpg" 
+                                alt="{{ starship.model }}" 
+                                class="img-fluid"
+                                onerror="this.onerror=null; this.src='assets/image-not-found.png';">
                         </div>
-                        
+
                         <div class="col-12 col-md-8">
                             <!-- Nombre ocupa todo el ancho -->
                             <h5>{{ starship.name | uppercase }}</h5>
@@ -30,13 +32,15 @@
                                     <p><b>Crew: </b>{{ starship.crew }}</p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-                }
             </div>
 
+        }@else{
+            <div class="m-5">
+                This starship doesn't exist or there has been an error.
+            </div>
         }
 
     </div>

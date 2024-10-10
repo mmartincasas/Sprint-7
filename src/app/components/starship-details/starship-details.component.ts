@@ -32,7 +32,7 @@ export class StarshipDetailsComponent {
     if (this.id){
       this.starshipsService.getById(this.id).subscribe(
         (data: Starship) => {
-        this.starship = data;
+            this.starship = data;
       })
     }
   }
