@@ -25,3 +25,18 @@ export interface StarshipList {
     previous: string;
     results: Starship[]; 
 }
+
+
+export interface Pilot {
+    id: number;
+    name: string;
+    url: string
+}
+
+
+export interface Film {
+    id: number;
+    title: string;
+    episode_id: number;
+    url: string
+}

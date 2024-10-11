@@ -1,8 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
-import { Starship } from '../../interfaces/starship';
+import { Starship, Pilot, Film } from '../../interfaces/starship';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StarshipsService } from '../../services/starships.service';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { StarshipsService } from '../../services/starships.service';
 export class StarshipDetailsComponent {
 
   starship! : Starship;
+  arrFilms: Film[] = [];
+  arrPilots: Pilot[] = [];
   id!: string;
   
   starshipsService = inject(StarshipsService);
@@ -25,16 +28,39 @@ export class StarshipDetailsComponent {
 
     this.id = this.route.snapshot.params['id'];
 
-    /*ID*/
     console.log("ID:", this.id);
 
-    /*Pendiente el CONTROL DE ERRORES*/
     if (this.id){
-      this.starshipsService.getById(this.id).subscribe(
+      this.starshipsService.getStarshipById(this.id).subscribe(
         (data: Starship) => {
             this.starship = data;
+            this.getPilots();
+            this.getFilms();
       })
     }
   }
+
+  getPilots() {
+    this.starship.pilots.forEach((pilotUrl, index) => {
+      this.starshipsService.getPilot(pilotUrl).subscribe(pilotData => {
+
+        pilotData.id = Number(this.starshipsService.getPilotId(this.starship.pilots[index]));
+
+        this.arrPilots.push(pilotData);
+      });
+    });
+  }
+
+  getFilms() {
+    this.starship.films.forEach((filmUrl, index) => {
+      this.starshipsService.getFilm(filmUrl).subscribe(filmData => {
+
+        filmData.id = Number(this.starshipsService.getFilmId(this.starship.films[index]));
+
+        this.arrFilms.push(filmData);
+      });
+    });
+  }
+
 
 }

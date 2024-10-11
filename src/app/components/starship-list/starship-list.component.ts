@@ -65,7 +65,7 @@ export class StarshipListComponent {
 
 
   openStarshipDetails (url: string){
-    const id = this.starshipsService.getIdForUrl(url);   
+    const id = this.starshipsService.getStarshipId(url);   
     this.router.navigate(['starship-details',id])
   }
 
