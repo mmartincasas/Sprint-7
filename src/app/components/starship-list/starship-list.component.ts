@@ -39,10 +39,8 @@ export class StarshipListComponent {
     const currentUrl = this.nextUrl() || this.initUrl; 
 
     this.starshipsService.getAll(currentUrl).subscribe((data: StarshipList) => {
-      
       this.arrStarships.update(starships => [...starships, ...data.results]);
       this.isLoading.set(false); 
-
       if (!data.next) {
         this.hasMore.set(false);
       }

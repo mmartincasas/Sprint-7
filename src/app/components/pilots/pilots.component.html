@@ -1,0 +1,20 @@
+@if(arrPilots.length>0){
+
+    <div class="container">
+        <br>
+        <h4 class="m-3">Pilots</h4>
+        <div class="row">
+            @for(pilot of arrPilots; track pilot.id){
+                <div class="col md-3">
+                    <div class="card m-3 text-center">
+                        <img class="card-img-top" src="https://starwars-visualguide.com/assets/img/characters/{{pilot.id}}.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5>{{pilot.name|uppercase}}</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <br><br>
+}

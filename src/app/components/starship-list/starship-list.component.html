@@ -1,4 +1,12 @@
 <div class="container">
+
+    @if(isLoading()){
+        <div class="loading-container">
+            <p>Loading data...</p>
+            <div class="spinner"></div> 
+        </div>
+    }
+
     @for(starship of arrStarships(); track starship.name){
 
         <div class="card m-3 text-center" (click)="openStarshipDetails(starship.url)">

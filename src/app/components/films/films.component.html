@@ -1,0 +1,23 @@
+@if(arrFilms.length>0){
+
+    <div class="container">
+        <br>
+        <h4 class="m-3">Films</h4>
+        <div class="row">
+            @for(film of arrFilms; track film.id){
+                <div class="col md-3">
+                    <div class="card m-3 text-center">
+                        <img class="card-img-top" src="https://starwars-visualguide.com/assets/img/films/{{film.id}}.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5>{{film.title|uppercase}}</h5>
+                            <h5>{{film.episode_id}}</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <br><br>
+}
+
+

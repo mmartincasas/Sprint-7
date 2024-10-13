@@ -1,11 +1,23 @@
 <div class="container">
 
-    <h2>{{ starship.name | uppercase }}</h2>
+    @if(StarshipError){
+        <div class="card m-5 p-5">
+            This starship doesn't exist or there has been an error.
+        </div>
+    }
 
-    <h4 class="m-3">Features</h4>
-    <div class="card m-3">
+    @if(isLoading){
+        <div class="loading-container">
+            <p>Loading data...</p>
+            <div class="spinner"></div> 
+        </div>
+    }
 
-        @if(starship){
+    @if(starship){
+
+        <h2>{{ starship.name | uppercase }}</h2>
+        <h4 class="m-3">Features</h4>
+        <div class="card m-3">       
             <div class="card m-2">
                 <div class="card-body">
                     <div class="row">
@@ -36,59 +48,13 @@
                     </div>
                 </div>
             </div>
-
-        }@else{
-            <div class="m-5">
-                This starship doesn't exist or there has been an error.
-            </div>
-        }
-
-    </div>
-
-    @if(arrPilots.length>0){
-
-        <br>
-        <h4 class="m-3">Pilots</h4>
-    
-        <div class="container">
-            <div class="row">
-                @for(pilot of arrPilots; track pilot.id){
-                    <div class="col md-3">
-                        <div class="card m-3 text-center">
-                            <img class="card-img-top" src="https://starwars-visualguide.com/assets/img/characters/{{pilot.id}}.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5>{{pilot.name|uppercase}}</h5>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
         </div>
-        <br><br>
-    }
 
-    @if(arrFilms.length>0){
+        <app-pilots [starship]="starship"></app-pilots>
+        <app-films [starship]="starship"></app-films>
 
-        <br>
-        <h4 class="m-3">Films</h4>
-    
-        <div class="container">
-            <div class="row">
-                @for(film of arrFilms; track film.id){
-                    <div class="col md-3">
-                        <div class="card m-3 text-center">
-                            <img class="card-img-top" src="https://starwars-visualguide.com/assets/img/films/{{film.id}}.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5>{{film.title|uppercase}}</h5>
-                                <h5>{{film.episode_id}}</h5>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-        <br><br>
     }
-    
 
 </div>
+
+
