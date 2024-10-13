@@ -1,0 +1,19 @@
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .modal-content {
+    background-color: #000; 
+    color: white; 
+    border: none; 
+  }
+  
+  .modal-header, .modal-footer {
+    border: none; 
+  }
+  
+  .modal-dialog {
+    max-width: 500px; 
+    margin: 1.75rem auto;
+  }

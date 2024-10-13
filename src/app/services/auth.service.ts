@@ -9,6 +9,8 @@ import { AuthResponse } from '../interfaces/auth-response';
 export class AuthService {
 
   private authURL = 'http://localhost:3000';
+  private tokenKey = '';
+  redirectUrl: string | null = null;
 
   httpClient = inject(HttpClient);
 
@@ -18,6 +20,18 @@ export class AuthService {
 
   login(email:string, password: string): Observable<AuthResponse>{
     return this.httpClient.post<AuthResponse>(`${this.authURL}/login`, {email, password});
+  }
+
+  saveToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token); 
+  }
+
+  getAuthToken(): string | null {
+    return localStorage.getItem(this.tokenKey); 
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.tokenKey); 
   }
   
 }

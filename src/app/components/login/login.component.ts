@@ -25,6 +25,8 @@ export class LoginComponent {
     })
   }
 
+
+  
   onLogIn(){
 
     this.loginError = false;
@@ -35,15 +37,25 @@ export class LoginComponent {
 
     const {emailLogin, passwordLogin} = this.formLogin.value;
 
+
     this.authService.login(emailLogin, passwordLogin).subscribe({
       next: response => {
-        this.router.navigate(['/starship-list']);
+
+        if(response && response.accessToken){
+          this.authService.saveToken(response.accessToken);
+          const redirectUrl = this.authService.redirectUrl || '/';
+          this.router.navigate([redirectUrl]);
+          this.authService.redirectUrl = null;
+        }
+
       },
       error: error => {
-        console.log('user not log In', error)
+        console.log('user not LogIn', error);
         this.loginError = true;
       }
-    });
+    })
+
+
   }
 
 

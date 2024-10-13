@@ -26,14 +26,23 @@
                 <img src="assets/star-wars-logo.svg" alt="Star Wars Logo" class="img-fluid m-3" style="max-width: 150px;"/>
             </a>
         </div>
+
         <div class="col-12 col-md-4 text-center">
+            @if(authService.getAuthToken()){
+                <a (click)="onLogout()">
+                    <img src="assets/user/logout.svg" alt="Log In" class="p-2"/>
+                </a>
+            }
+            @else{
             <a routerLink='/login'>
                 <img src="assets/user/login.svg" alt="Log In" class="p-2"/>
             </a>
             <a routerLink='/register'>
                 <img src="assets/user/register.svg" alt="Sign Up" class="p-2"/>
             </a>
+            }
         </div>
+
     </div>
 
     <nav class='navbar navbar-expand navbar-dark justify-content-center align-items-center'>
@@ -46,4 +55,19 @@
                 </li>
             </ul>
     </nav>
+</div>
+
+
+
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Logged out successfully!</h5>
+            </div>
+            <div class="modal-body">
+                Redirecting to Home...
+            </div>
+        </div>
+    </div>
 </div>
