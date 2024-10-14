@@ -1,27 +1,71 @@
-# StarWarsProject
+# StarWars Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
+## 📄 Description
 
-## Development server
+This application was generated using **Angular CLI 18**. This application was generated using Angular CLI 18. Its purpose is to generate a web interface that displays information about Star Wars starships by consuming an external API. The user can browse through a list of starships and view detailed information for each one.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The data is fetched from the SWAPI (Star Wars API), which provides detailed information about the starships. Pagination is used to manage the large amount of data, and the user can load more starships on demand.
 
-## Code scaffolding
+## 📜 Features
+- Display a list of starships
+- View detailed information about each starship (image, name, model...)
+- Infinite scroll in starship-list to load additional data
+- Protected routes using Angular Guards to restrict access to certain pages for registered users
+- User authentication using JSON Web Tokens (JWT)
+- Login and registration system integrated with a mock backend (json-server-auth)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 💻 Technologies
 
-## Build
+- [Angular CLI](https://angular.dev/) version 18.2.5.
+- [Bootstrap](https://getbootstrap.com/) version 5.3.3
+- HTML5
+- SCSS
+- TypeScript
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## 📋 Requirements
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Node.js and npm installed on your system. You can download them from [nodejs.org](https://nodejs.org/).
 
-## Running end-to-end tests
+- Angular CLI installed globally. You can install it with the following command:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm install -g @angular/cli
+```
 
-## Further help
+## 🛠️ Instructions
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**✔️ Step 1:** Clone the repository:
+
+```bash
+git clone https://github.com/mmartincasas/Sprint-7
+```
+
+**✔️ Step 2:** Navigate to the project directory and install the npm dependencies:
+
+```bash
+npm install
+```
+
+
+## ⚙️ Development server
+
+**✔️ Backend (JWT Authentication):** To start JSON Server with authentication enabled by running:
+
+```bash
+npx json-server-auth db.json
+```
+The backend server will run at `http://localhost:3000/`. Make sure to use this endpoint for login and registration requests.
+
+**✔️ Frontend:** Run `ng serve` for a dev server. Then, open `http://localhost:4200/` in your browser. The application will automatically reload whenever you modify any of the source files.
+
+
+## 📚 Resources
+
+- Star Wars API:
+    - [Swapi.dev](https://swapi.dev/)
+
+- Star Wars Visual Guide:
+    - [starwars-visualguide](https://starwars-visualguide.com/)
+
+
